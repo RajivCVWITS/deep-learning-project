@@ -1,6 +1,8 @@
 from deep_learning_project.constants import *
 from deep_learning_project.utils.common import read_yaml, create_directories
-from deep_learning_project.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig
+from deep_learning_project.entity.config_entity import (DataIngestionConfig, 
+                                                        PrepareBaseModelConfig,
+                                                        PrepareCallbacksConfig)
 
 
 class ConfigurationManager:
