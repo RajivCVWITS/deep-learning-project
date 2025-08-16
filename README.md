@@ -19,3 +19,77 @@
 7. Update the pipeline
 8. Update the main.py
 9. Update the dvc.yaml
+
+### Data Ingestion Pipeline Setup ###
+
+1. Configuration Setup (config.yaml)
+This YAML file contains all the settings for data ingestion:
+Where to store artifacts (artifacts_root)
+Where to download and extract data (root_dir, local_data_file, unzip_dir)
+The source URL for the data (source_URL)
+
+
+2. Constants and Utilities (src/deep_learning_project/constants.py, src/deep_learning_project/utils/common.py)
+constants.py
+
+Defines paths like CONFIG_FILE_PATH and PARAMS_FILE_PATH so the rest of the code can refer to config files easily.
+common.py
+
+Provides utility functions:
+read_yaml: Reads YAML files and returns their contents.
+create_directories: Creates directories if they don’t exist.
+Other helpers for file operations.
+
+
+3. Configuration Manager (ConfigurationManager class)
+Reads the config and params YAML files using read_yaml.
+Creates the necessary directories using create_directories.
+Provides a method to get a DataIngestionConfig object with all required paths and URLs.
+
+
+4. Data Ingestion Logic (DataIngestion class)
+Initialization:
+
+Takes a DataIngestionConfig object (with all paths and URLs).
+Download File:
+
+Checks if the data file exists.
+If not, creates the parent directory and downloads the zip file from the GitHub URL to the specified local path.
+Extract Zip File:
+
+Extracts the downloaded zip file into the specified directory.
+
+
+5. Notebook or Script (research/01_data_ingestion.ipynb)
+This is the entry point for running the pipeline.
+It:
+Sets the working directory.
+Instantiates ConfigurationManager.
+Gets the data ingestion config.
+Instantiates DataIngestion.
+Runs download_file() and extract_zip_file().
+How the Folders Collaborate
+config/: Stores configuration files.
+src/deep_learning_project/: Contains reusable code (constants, utilities, classes).
+artifacts/: Stores downloaded and extracted data.
+research/: Contains notebooks/scripts that use the code from src to run the pipeline.
+
+## Data Ingestion Flow Diagram ##
+research/01_data_ingestion.ipynb
+    |
+    v
+src/deep_learning_project/constants.py (paths to config files)
+    |
+    v
+src/deep_learning_project/utils/common.py (read_yaml, create_directories)
+    |
+    v
+src/deep_learning_project/ (ConfigurationManager, DataIngestion)
+    |
+    v
+config/config.yaml (settings)
+    |
+    v
+artifacts/data_ingestion/ (downloaded and extracted data)
+
+
