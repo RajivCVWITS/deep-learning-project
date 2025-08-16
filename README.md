@@ -93,3 +93,36 @@ config/config.yaml (settings)
 artifacts/data_ingestion/ (downloaded and extracted data)
 
 
+
+
+### Prepare Base Model ###
+
+
+Used 1 reference
+Base model preparation is a key step in deep learning projects, especially when using transfer learning. Here’s why it’s needed:
+
+Why Prepare a Base Model?
+Transfer Learning:
+
+You use a pre-trained model (like VGG, ResNet, etc.) that has already learned useful features from a large dataset (e.g., ImageNet).
+This saves time and resources, and often improves performance for your specific task.
+Customization:
+
+You may need to modify the base model for your dataset:
+Change the input size.
+Add or remove layers.
+Set the number of output classes.
+Freeze or unfreeze layers for training.
+Consistency:
+
+Preparing the base model ensures your pipeline always starts from the same architecture and weights.
+This makes experiments reproducible.
+Efficiency:
+
+Loading and saving the base model as an artifact avoids downloading or re-initializing it every time you run your pipeline.
+Typical Steps in Base Model Preparation
+Load a pre-trained model with the desired architecture and weights.
+Configure input shape, output classes, and other parameters as per your config.
+Save the base model for later use in training and evaluation.
+Summary:
+Preparing the base model sets up a strong, reusable foundation for your training pipeline, leveraging existing knowledge and making your workflow efficient and reproducible.
