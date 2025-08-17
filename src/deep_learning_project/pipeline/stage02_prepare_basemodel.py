@@ -1,6 +1,6 @@
-from deep_learning_project.config.configuration import ConfigurationManager
-from deep_learning_project.components.prepare_basemodel import PrepareBaseModel
-from deep_learning_project import logger
+from src.deep_learning_project.config.configuration import ConfigurationManager
+from src.deep_learning_project.components.prepare_basemodel import PrepareBaseModel
+from src.deep_learning_project import logger
 
 
 STAGE_NAME = "Prepare Base Model"

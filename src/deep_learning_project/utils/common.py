@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from deep_learning_project import logger
+from src.deep_learning_project import logger
 import json
 import joblib
 from ensure import ensure_annotations

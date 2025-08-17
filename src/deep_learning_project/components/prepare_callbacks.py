@@ -3,7 +3,8 @@ import urllib.request as request
 from zipfile import ZipFile
 import tensorflow as tf
 import time
-from deep_learning_project.entity.config_entity import PrepareCallbacksConfig
+
+from src.deep_learning_project.entity.config_entity import PrepareCallbacksConfig
 
 
 class PrepareCallback:

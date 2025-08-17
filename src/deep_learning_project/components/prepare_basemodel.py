@@ -4,7 +4,7 @@ from zipfile import ZipFile
 import tensorflow as tf
 from pathlib import Path
 
-from deep_learning_project.entity.config_entity import PrepareBaseModelConfig
+from src.deep_learning_project.entity.config_entity import PrepareBaseModelConfig
 
 class PrepareBaseModel:
     def __init__(self, config: PrepareBaseModelConfig):

@@ -1,6 +1,6 @@
-from deep_learning_project.config.configuration import ConfigurationManager
-from deep_learning_project.components.data_ingestion import DataIngestion
-from deep_learning_project import logger
+from src.deep_learning_project.config.configuration import ConfigurationManager
+from src.deep_learning_project.components.data_ingestion import DataIngestion
+from src.deep_learning_project import logger
 
 STAGE_NAME = "Data Ingestion Stage"
 
