@@ -2,6 +2,8 @@ from src.deep_learning_project.entity.config_entity import TrainingConfig
 import tensorflow as tf
 from pathlib import Path
 
+from tensorflow.keras.optimizers import Adam
+
 
 class Training:
     def __init__(self, config: TrainingConfig):
@@ -10,6 +12,16 @@ class Training:
     def get_base_model(self):
         self.model = tf.keras.models.load_model(
             self.config.updated_base_model_path
+        )
+
+        # ✅ Recreate optimizer every time after loading model
+        optimizer = Adam(learning_rate=self.config.params_learning_rate)
+
+        # ✅ Recompile model
+        self.model.compile(
+            optimizer=optimizer,
+            loss="categorical_crossentropy",   # or sparse_categorical_crossentropy if labels are int
+            metrics=["accuracy"]
         )
     
     def train_valid_generator(self):
