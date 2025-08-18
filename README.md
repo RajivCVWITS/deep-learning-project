@@ -126,3 +126,59 @@ Configure input shape, output classes, and other parameters as per your config.
 Save the base model for later use in training and evaluation.
 Summary:
 Preparing the base model sets up a strong, reusable foundation for your training pipeline, leveraging existing knowledge and making your workflow efficient and reproducible.
+
+---
+
+## Prepare Callbacks
+
+Callbacks are essential for monitoring and controlling the training process. Typical callbacks include:
+- **ModelCheckpoint**: Saves the best model during training.
+- **TensorBoard**: Logs metrics for visualization.
+- **EarlyStopping**: Stops training when performance plateaus (if used).
+
+**Steps:**
+1. Define callback configurations in `config.yaml`.
+2. Implement callback logic in `src/deep_learning_project/components/prepare_callbacks.py`.
+3. Artifacts are saved in `artifacts/prepare_callbacks/` (e.g., checkpoints, tensorboard logs).
+
+---
+
+## Training
+
+Training is the core step where the model learns from data.
+- Uses the prepared base model and ingested data.
+- Loads parameters from `params.yaml` and configuration from `config.yaml`.
+- Training logic is implemented in `src/deep_learning_project/components/training.py`.
+- Trained models are saved in `artifacts/training/`.
+
+**Steps:**
+1. Load data and base model.
+2. Compile the model with optimizer, loss, and metrics.
+3. Fit the model using callbacks.
+4. Save the trained model artifact.
+
+---
+
+## Evaluation
+
+Model evaluation measures performance on test/validation data.
+- Evaluation logic is in `src/deep_learning_project/components/evaluation.py`.
+- Results and metrics are logged and can be visualized using TensorBoard.
+
+**Steps:**
+1. Load the trained model and test data.
+2. Run predictions and calculate metrics (accuracy, loss, etc.).
+3. Save or log evaluation results.
+
+---
+
+## Summary of Pipeline Steps
+
+1. Data Ingestion
+2. Prepare Base Model
+3. Prepare Callbacks
+4. Training
+5. Evaluation
+
+Each step is modular and configurable, making the workflow reproducible and easy to extend.
+

@@ -2,6 +2,8 @@ from src.deep_learning_project import logger
 from src.deep_learning_project.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from src.deep_learning_project.pipeline.stage02_prepare_basemodel import PrepareBaseModelTrainingPipeline
 from src.deep_learning_project.pipeline.stage04_training import ModelTrainingPipeline
+from src.deep_learning_project.pipeline.stage05_evaluation import EvaluationPipeline
+
 
 import tensorflow as tf
 tf.config.run_functions_eagerly(True)
@@ -37,6 +39,19 @@ try:
    model_trainer = ModelTrainingPipeline()
    model_trainer.main()
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+STAGE_NAME = "Evaluation stage"
+try:
+   logger.info(f"*******************")
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+   model_evalution = EvaluationPipeline()
+   model_evalution.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
 except Exception as e:
         logger.exception(e)
         raise e
