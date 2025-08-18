@@ -1,5 +1,5 @@
 from src.deep_learning_project import logger
-from src.deep_learning_project.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from deep_learning_project.pipeline.stage01_data_ingestion import DataIngestionTrainingPipeline
 from src.deep_learning_project.pipeline.stage02_prepare_basemodel import PrepareBaseModelTrainingPipeline
 from src.deep_learning_project.pipeline.stage04_training import ModelTrainingPipeline
 from src.deep_learning_project.pipeline.stage05_evaluation import EvaluationPipeline

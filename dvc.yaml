@@ -1,0 +1,49 @@
+stages:
+  data_ingestion:
+    cmd: python -m src.deep_learning_project.pipeline.stage01_data_ingestion
+    deps:
+      - src/deep_learning_project/pipeline/stage01_data_ingestion.py
+      - config/config.yaml
+
+  prepare_base_model:
+    cmd: python -m src.deep_learning_project.pipeline.stage02_prepare_basemodel
+    deps:
+      - src/deep_learning_project/pipeline/stage02_prepare_basemodel.py
+      - config/config.yaml
+    params:
+      - IMAGE_SIZE
+      - INCLUDE_TOP
+      - CLASSES
+      - WEIGHTS
+      - LEARNING_RATE
+    outs:
+      - artifacts/prepare_base_model
+
+  training:
+    cmd: python -m src.deep_learning_project.pipeline.stage04_training
+    deps:
+      - src/deep_learning_project/pipeline/stage04_training.py
+      - src/deep_learning_project/components/prepare_callbacks.py
+      - config/config.yaml
+      - artifacts/prepare_base_model
+    params:
+      - IMAGE_SIZE
+      - EPOCHS
+      - BATCH_SIZE
+      - AUGMENTATION
+    outs:
+      - artifacts/training/model.h5
+
+  evaluation:
+    cmd: python -m src.deep_learning_project.pipeline.stage05_evaluation
+    deps:
+      - src/deep_learning_project/pipeline/stage05_evaluation.py
+      - config/config.yaml
+      - artifacts/data_ingestion/Chicken-fecal-images
+      - artifacts/training/model.h5
+    params:
+      - IMAGE_SIZE
+      - BATCH_SIZE
+    metrics:
+      - scores.json:
+          cache: false

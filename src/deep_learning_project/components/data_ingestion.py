@@ -10,7 +10,9 @@ class DataIngestion:
         self.config = config
 
     def download_file(self):
-        # Instead of downloading, just ensure the folder exists
+        # Ensure the folder exists, but do NOT clear or overwrite if it already has data
         os.makedirs(self.config.unzip_dir, exist_ok=True)
-        # You can add logging here if needed
-        print(f"Using local data folder: {self.config.unzip_dir}")
+        if os.listdir(self.config.unzip_dir):
+            logger.info(f"Data already present in {self.config.unzip_dir}, skipping download.")
+        else:
+            logger.info(f"No data found in {self.config.unzip_dir}. Please upload data manually or configure download.")
